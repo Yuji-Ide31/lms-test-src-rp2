@@ -1,6 +1,7 @@
 package jp.co.sss.lms.ct.f01_login1;
 
 import static jp.co.sss.lms.ct.util.WebDriverUtils.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.By;
 
 /**
  * 結合テスト ログイン機能①
@@ -35,14 +37,38 @@ public class Case02 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
-		// TODO ここに追加
+		// トップページにアクセス
+		goTo("http://localhost:8080/lms");
+
+		// URL確認
+		assertEquals("http://localhost:8080/lms/", webDriver.getCurrentUrl());
+
+		// エビデンス取得
+		getEvidence(new Object() {
+		});
 	}
 
 	@Test
 	@Order(2)
 	@DisplayName("テスト02 DBに登録されていないユーザーでログイン")
 	void test02() {
-		// TODO ここに追加
+		// トップページにアクセス
+		goTo("http://localhost:8080/lms");
+
+		// ログインID・パスワード入力
+		webDriver.findElement(By.id("loginId")).sendKeys("Yujiro123");
+		webDriver.findElement(By.id("password")).sendKeys("Yujiro123");
+
+		// ログインボタン押下
+		webDriver.findElement(By.xpath("//input[@type='submit' and @value='ログイン']")).click();
+
+		// エラーメッセージ表示確認
+		By errorMsg = By.xpath("//*[contains(text(),'ログインに失敗しました')]");
+		visibilityTimeout(errorMsg, 5);
+
+		// スクリーンショット取得
+		getEvidence(new Object() {
+		});
 	}
 
 }
