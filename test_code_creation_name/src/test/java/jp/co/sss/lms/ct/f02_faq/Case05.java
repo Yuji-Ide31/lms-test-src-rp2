@@ -123,6 +123,9 @@ public class Case05 {
 		// 「検索」ボタンをクリック
 		webDriver.findElement(By.xpath("//input[@type='submit' and @value='検索']")).click();
 
+		// ページの一番下までスクロール
+		scrollBy("document.body.scrollHeight");
+
 		// ページ読み込み待機
 		pageLoadTimeout(5);
 
@@ -137,6 +140,9 @@ public class Case05 {
 	void test06() {
 		// 「クリア」ボタンをクリック
 		webDriver.findElement(By.xpath("//input[@type='button' and @value='クリア']")).click();
+
+		// ページの一番上までスクロール
+		scrollTo("0");
 
 		// エビデンス取得
 		getEvidence(new Object() {

@@ -121,7 +121,8 @@ public class Case06 {
 		// 「研修関係」カテゴリリンクをクリック
 		webDriver.findElement(By.linkText("【研修関係】")).click();
 
-		scrollBy("window.innerHeight");
+		// ページの一番下までスクロール
+		scrollBy("document.body.scrollHeight");
 
 		// ページ読み込み待機
 		pageLoadTimeout(5);
