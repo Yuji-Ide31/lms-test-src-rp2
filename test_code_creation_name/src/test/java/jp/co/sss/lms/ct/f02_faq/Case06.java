@@ -143,6 +143,12 @@ public class Case06 {
 		// 最初の質問タイトルをクリック
 		webDriver.findElement(By.className("sorting_1")).click();
 
+		// 検索結果の回答を確認
+		WebElement answer = webDriver.findElement(By.id("answer-h[${status.index}]"));
+		String answerText = "A. 受講者の退職や解雇等、やむを得ない事情による途中終了に関してなど、事情をお伺いした上で、"
+				+ "協議という形を取らせて頂きます。 弊社営業担当までご相談下さい。";
+		assertEquals(answerText, answer.getText());
+
 		// エビデンス取得
 		getEvidence(new Object() {
 		});

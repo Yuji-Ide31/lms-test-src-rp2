@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 /**
  * 結合テスト よくある質問機能
@@ -129,6 +130,10 @@ public class Case05 {
 		// ページ読み込み待機
 		pageLoadTimeout(5);
 
+		// 検索結果の確認
+		WebElement result = webDriver.findElement(By.className("mb10"));
+		assertEquals("Q.キャンセル料・途中退校について", result.getText());
+
 		// エビデンス取得
 		getEvidence(new Object() {
 		});
@@ -143,6 +148,10 @@ public class Case05 {
 
 		// ページの一番上までスクロール
 		scrollTo("0");
+
+		// キーワード入力欄が空か確認
+		WebElement keyword = webDriver.findElement(By.id("form"));
+		assertEquals("", keyword.getText());
 
 		// エビデンス取得
 		getEvidence(new Object() {
